@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/no-typos */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prefer-stateless-function */
+
 import React from 'react';
+import Button from './Button';
 
 class Clock extends React.Component {
     state = { date: new Date(), locale: 'bn-BD' };
@@ -29,6 +30,7 @@ class Clock extends React.Component {
     }
 
     render() {
+        console.log('clock component render');
         const { date, locale } = this.state;
         // const { locale } = this.props;
         return (
@@ -36,9 +38,7 @@ class Clock extends React.Component {
                 <h1 className="heading">
                     <span>Hello World -{date.toLocaleTimeString(locale)}</span>
                 </h1>
-                <button type="button" onClick={() => this.handleClick('en-US')}>
-                    Click here
-                </button>
+                <Button change={this.handleClick} locale="en-US" />
             </div>
         );
     }
