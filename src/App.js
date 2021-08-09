@@ -1,24 +1,53 @@
+/* eslint-disable react/no-unused-state */
+import React from 'react';
 import ClickCounter from './components/ClickCounter';
-// import User from './components/User';
 import Counter from './components/Counter';
-import HoverCounter from './components/HoverCounter';
+import Section from './components/Section';
+import ThemeContext from './contexts/themeContext';
 
-function App() {
-    return (
-        <div className="App">
-            {/* <User render={(isLoggedIn) => (isLoggedIn ? 'Medul Hasan' : 'Guest')} /> */}
-            <Counter
-                render={(count, incrementCount) => (
-                    <ClickCounter count={count} incrementCount={incrementCount} />
-                )}
-            />
-            <Counter
-                render={(count, incrementCount) => (
-                    <HoverCounter count={count} incrementCount={incrementCount} />
-                )}
-            />
-        </div>
-    );
+export default class App extends React.Component {
+    state = {
+        theme: 'light',
+        switchTheme: () => {
+            this.setState(({ theme }) => {
+                if (theme === 'dark') {
+                    return {
+                        theme: 'light',
+                    };
+                }
+                return {
+                    theme: 'dark',
+                };
+            });
+        },
+    };
+
+    /* switchTheme = () => {
+        this.setState(({ theme }) => {
+            if (theme === 'dark') {
+                return {
+                    theme: 'light',
+                };
+            }
+            return {
+                theme: 'dark',
+            };
+        });
+    }; */
+
+    render() {
+        // const { theme } = this.state;
+        return (
+            <div className="App">
+                <Counter>
+                    {(count, incrementCount) => (
+                        <ClickCounter count={count} incrementCount={incrementCount} />
+                    )}
+                </Counter>
+                <ThemeContext.Provider value={this.state}>
+                    <Section />
+                </ThemeContext.Provider>
+            </div>
+        );
+    }
 }
-
-export default App;
