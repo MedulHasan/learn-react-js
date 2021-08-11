@@ -2,6 +2,10 @@ import { useCallback, useState, useMemo } from 'react';
 import Button from './components/Button';
 import ShowCount from './components/ShowCount';
 import Title from './components/Title';
+import Time from './useRef-forwardRef/Time';
+
+// useRef
+import From from './useRef-forwardRef/From';
 
 function App() {
     const [count1, setCount1] = useState(0);
@@ -29,6 +33,12 @@ function App() {
             <hr />
             <ShowCount count={count2} title="Counter 2" />
             <Button handleClick={incrementByFive}>Increment by five</Button>
+
+            {/* useRef */}
+            <div>
+                <From />
+                <Time />
+            </div>
         </div>
     );
 }
